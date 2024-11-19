@@ -39,14 +39,21 @@ To view the presentation, simply open the `index.html` file in your preferred we
 
 The presentation includes the following topics:
 
-1. Introduction to Vue.js 3
-2. Basic Syntax
-3. Composition API
+1. Why Vue.js?
+2. Creating a Vue Application
+3. Template Syntax
 4. Reactive Data
 5. Computed Properties
-6. Directives
-7. Components
-8. Lifecycle Hooks
+6. Class and Style Bindings
+7. Conditional Rendering
+8. List Rendering
+9. Event Handling
+10. Form Input Bindings
+11. Lifecycle Hooks
+12. Watchers
+13. Components
+14. Routing with Vue Router
+15. State Management with Pinia
 
 ## Contributing
 
