@@ -14,10 +14,342 @@
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<body>
-		<div class="reveal">
+		<!-- <div class="reveal">
 			<div class="slides">
 				<section>Slide 1</section>
 				<section>Slide 2</section>
+			</div>
+		</div> -->
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>						
+						<!-- 1 -->
+						
+						### 1. Why Vue.js?
+						- Simplicity: Vue offers a structured setup, enabling backend developers to get started quickly.
+						- Flexibility: Works well for both single-page applications and larger projects with minimal overhead.
+						- Community and Support: Supportive community, excellent documentation, and a robust plugin ecosystem.
+						
+						---
+						
+						### 2. Creating a Vue Application
+						- Every Vue app starts by creating a root instance.
+						
+						```javascript
+						import { createApp } from 'vue';
+						import App from './App.vue';
+
+						createApp(App).mount('#app');
+
+						```
+
+						---
+
+						### 3. Template Syntax
+						- Vue templates use an HTML-based syntax for declarative rendering.
+
+						Text Interpolation
+
+						```html
+						<h1>{{ message }}</h1>
+						```
+
+						Directives
+						```html
+						<p v-if="isVisible">Visible Content</p>
+						<ul>
+							<li v-for="item in items" :key="item.id">{{ item.name }}</li>
+						</ul>
+
+						```
+						<small>Why use it: Write dynamic templates with ease.</small>
+
+						---
+
+						### 4. Reactive Data
+						Vue makes state management intuitive with its reactivity system.
+											
+						```html
+						<script setup>
+							import { ref } from 'vue';
+
+							const count = ref(0);
+							function increment() {
+								count.value++;
+							}
+						</script>
+
+						<template>
+							<p>{{ count }}</p>
+							<button @click="increment">Increment</button>
+						</template>
+
+						<style>
+							/* Scoped styles here */
+						</style>
+						```
+						<small>Why use it: Update the UI automatically when data changes.</small>
+												
+						---
+
+						### 5. Computed Properties
+						Computed properties derive new values based on existing reactive data.
+						
+						```html
+						<script setup>
+							import { ref, computed } from 'vue';
+
+							const count = ref(2);
+							const double = computed(() => count.value * 2);
+						</script>
+						```
+						<small>Why use it: Avoid repetitive logic for derived data.</small>
+						
+						---
+
+						### 6. Class and Style Bindings
+						Dynamically bind classes and styles in templates.
+						
+						```html
+							<script setup>
+								import { ref } from 'vue';
+
+								const isActive = ref(true);
+								const textColor = ref('blue');
+							</script>
+
+							<template>
+								<div :class="{ active: isActive }" :style="{ color: textColor }">Hello</div>
+							</template>
+						```
+						<small>Why use it: Conditionally apply classes and styles based on data.</small>
+						---
+
+						### 7. Conditional Rendering
+						Use v-if for conditional display of elements.
+						
+						```html
+							<p v-if="show">This is visible</p>
+							<p v-else>This is hidden</p>
+						```
+						<small>Why use it: Show or hide elements based on data.</small>
+						---
+
+						### 8. List Rendering
+						Use v-for to render arrays.
+						
+						```html
+						<script setup>
+							const items = ['Apple', 'Banana', 'Cherry'];
+						</script>
+
+						<template>
+							<ul>
+								<li v-for="(item, index) in items" :key="index">{{ item }}</li>
+							</ul>
+						</template>
+						```
+						<small>Why use it: Render lists of data dynamically.</small>
+
+						---
+
+						### 9. Event Handling
+						Use the v-on directive (or @) to handle DOM events.
+						
+						```html
+						<script setup>
+							function handleClick() {
+								console.log('Button clicked!');
+							}
+						</script>
+
+						<template>
+							<button @click="handleClick">Click Me</button>
+						</template>
+						```
+						<small>Why use it: React to user interactions.</small>
+
+						---
+
+						### 10. Form Input Bindings
+						Use v-model for two-way data binding in forms.
+						
+						```html
+						<script setup>
+							import { ref } from 'vue';
+
+							const name = ref('');
+						</script>
+
+						<template>
+							<input v-model="name" placeholder="Enter your name" />
+							<p>Your name is: {{ name }}</p>
+						</template>
+						```
+
+						---
+
+						### 11. Lifecycle Hooks
+						React to component lifecycle stages, like mounted.
+						
+						```html
+						<script setup>
+							import { onMounted } from 'vue';
+
+							onMounted(() => {
+								console.log('Component is mounted!');
+							});
+						</script>
+						```
+						<small>Other hooks: onBeforeMount, onUpdated, onBeforeUpdate, onUnmounted</small>
+						
+						---
+
+						### 12. Watchers
+						React to changes in specific data.
+						
+						```html
+						<script setup>
+							import { ref } from 'vue';
+
+							const name = ref('');
+						</script>
+
+						<template>
+							<input v-model="name" placeholder="Enter your name" />
+							<p>Your name is: {{ name }}</p>
+						</template>
+						```
+						<small>Why use it: Perform actions based on data changes.</small>
+
+						---
+
+						### 13. Components
+						Vue is built around a component-based architecture.
+						
+						```html
+						<!-- ParentComponent.vue -->
+						<script setup>
+							import ChildComponent from './ChildComponent.vue';
+
+							const parentMessage = 'Hello from Parent!';
+						</script>
+
+						<template>
+							<ChildComponent :message="parentMessage" />
+						</template>
+						```
+
+						```html
+						<!-- ChildComponent.vue -->
+						<script setup>
+							defineProps(['message']);
+						</script>
+
+						<template>
+							<p>{{ message }}</p>
+						</template>
+						```
+						<small>Why use it: Encapsulate and reuse UI components.</small>
+
+						---
+
+						### 14. Routing with Vue Router
+						For SPAs, Vue Router manages navigation between view.
+						
+						```javascript
+						import { createRouter, createWebHistory } from 'vue-router';
+						
+						const routes = [
+							{
+								path: "/",
+								name: "Home",
+								component: () => import("@/components/Home.vue"),
+							},
+							{
+								path: "/about",
+								name: "About",
+								component: () => import("@/components/About.vue"),
+							},
+							{
+								path: "/login",
+								name: "Login",
+								component: () => import("@/components/Login.vue"),
+							},
+						];
+						
+						const router = createRouter({
+							history: createWebHistory(),
+							routes,
+						});
+
+						// On before each route hook
+						router.beforeEach((to, from, next) => {
+							// run some code...
+						});
+
+						```
+						<small>Why use it: Enable navigation between views in a single-page app.</small>	
+
+						---
+
+						### 15. State Management with Pinia
+						Pinia, a state management library, simplifies app-wide state handling.
+
+
+						```javascript
+						import { defineStore } from 'pinia';
+
+						export const useCounterStore = defineStore({
+							id: 'counter',
+							
+							state: () => ({
+								count: 0,
+							}),
+							
+							getters: {
+								getCount: () => state.count,
+							},
+							
+							actions: {
+								increment() {
+									this.count++;
+								}
+							}
+						});
+						```
+
+						---
+
+						Authentication store example
+						
+						```javascript
+						import { defineStore } from 'pinia';
+
+						export const useAuthStore = defineStore({
+							id: 'auth',
+							
+							state: () => ({
+								isAuthenticated: !!localStorage.getItem('userAuthenticated'),
+							}),
+							
+							getters: {
+								isUserAuthenticated: (state) => state.isAuthenticated,
+							},
+							
+							actions: {
+								setAuthenticated(status) {
+									this.isAuthenticated = status;
+									localStorage.setItem('userAuthenticated', status);
+								}
+							}
+						});
+
+						```
+			
+				  </textarea>
+				</section>
 			</div>
 		</div>
 
